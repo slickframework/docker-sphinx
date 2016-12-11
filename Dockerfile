@@ -7,9 +7,11 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get upgrade -y
 
 # Intall python-sphinx
-RUN apt-get install curl python-sphinx pip -y
+RUN apt-get install curl python-sphinx python-setuptools python-dev build-essential -y
 
-RUN sphinx-autobuild sphinxcontrib-phpdomain
+RUN easy_install pip
+
+RUN pip install sphinx-autobuild sphinxcontrib-phpdomain
 
 # Create the user sphinx
 RUN useradd -ms /bin/bash -d /docs sphinx
